@@ -29,8 +29,7 @@ public class UserForm extends BaseForm {
 	@NotNull(message = "roleId is required")
 	private Long roleId;
 
-	@NotEmpty(message = "roleName is required")
-	private String roleName;
+
 
 	public String getFirstName() {
 		return firstName;
@@ -80,13 +79,7 @@ public class UserForm extends BaseForm {
 		this.roleId = roleId;
 	}
 
-	public String getRoleName() {
-		return roleName;
-	}
-
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
+	
 
 	@Override
 	public BaseDTO getDto() {
@@ -98,7 +91,6 @@ public class UserForm extends BaseForm {
 		dto.setLoginId(loginId);
 		dto.setPassword(password);
 		dto.setRoleId(roleId);
-		dto.setRoleName(roleName);
 		dto.setDob(dob);
 
 		return dto;

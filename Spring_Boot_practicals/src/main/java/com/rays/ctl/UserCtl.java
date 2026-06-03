@@ -1,5 +1,7 @@
 package com.rays.ctl;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rays.common.BaseCtl;
@@ -22,7 +25,7 @@ import com.rays.service.UserService;
 public class UserCtl extends BaseCtl {
 
 	@Autowired
-	UserService service;
+	public 	UserService service;
 
 	@PostMapping("save")
 	public ORSResponse save(@RequestBody @Valid UserForm form, BindingResult bindingResult) {
@@ -105,5 +108,28 @@ public class UserCtl extends BaseCtl {
 		return res;
 
 	}
+	
+	
+	@RequestMapping(value = "search/{pageNo}", method = { RequestMethod.POST, RequestMethod.GET })
+	public ORSResponse search(@RequestBody UserForm form, @PathVariable int pageNo) {
+
+		UserDTO dto = (UserDTO) form.getDto();
+		ORSResponse res = new ORSResponse();
+
+		int pageSize = 5;
+
+		List<UserDTO> list = service.search(dto, pageNo, pageSize);
+
+		if (list != null) {
+			res.addData(list);
+			res.setSuccess(true);
+		} else {
+			res.addMessage("record not found");
+		}
+
+		return res;
+
+	}
+	
 
 }
