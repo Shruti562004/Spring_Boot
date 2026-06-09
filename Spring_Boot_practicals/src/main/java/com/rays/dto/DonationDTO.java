@@ -27,6 +27,11 @@ public class DonationDTO  extends BaseDTO{
 	public void setOrganizer(String organizer) {
 		this.organizer = organizer;
 	}
+	@Override
+	public String getValue() {
+		
+		return Name;
+	}
 	
 
 }

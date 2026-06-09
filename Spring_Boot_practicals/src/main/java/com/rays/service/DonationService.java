@@ -3,33 +3,32 @@ package com.rays.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rays.dao.UserDAO;
-import com.rays.dto.UserDTO;
+import com.rays.dao.DonationDAO;
+import com.rays.dto.DonationDTO;
 
-@Service
-@Transactional
-public class UserService {
 
+public class DonationService {
 	@Autowired
-	UserDAO dao;
-
-	@Transactional(propagation = Propagation.REQUIRED)
-	public Long add(UserDTO dto) {
-		Long id = dao.add(dto);
+	DonationDAO dao;
+	
+	
+	@Transactional(propagation=Propagation.REQUIRED)
+	public Long add(DonationDTO dto) {
+		Long id=dao.add(dto);
 		return id;
 	}
-
+	
+	
+	
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void update(UserDTO dto) {
+	public void update(DonationDTO dto) {
 		dao.update(dto);
 	}
-
 	@Transactional(propagation = Propagation.REQUIRED)
-	public Long save(UserDTO dto) {
+	public Long save(DonationDTO dto) {
 
 		Long id = dto.getId();
 
@@ -44,40 +43,24 @@ public class UserService {
 
 		return id;
 	}
-
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(Long pk) {
 
 		dao.delete(findById(pk));
 
 	}
-
 	@Transactional(readOnly = true)
-	public UserDTO findById(Long id) {
+	public DonationDTO findById(Long id) {
 
 		return dao.findByPk(id);
 
 	}
 	
+	
 	@Transactional(readOnly = true)
-	public List<UserDTO> search(UserDTO dto, int pageNo, int pageSize) {
+	public List<DonationDTO> search(DonationDTO dto, int pageNo, int pageSize) {
 		return dao.search(dto, pageNo, pageSize);
 	}
 	
-	
-	@Transactional(readOnly = true)
-	public UserDTO authenticate(String login, String password) {
-
-		UserDTO dto = dao.findByUniqueKey("loginId", login);
-
-		if (dto != null) {
-			if (dto.getPassword().equals(password)) {
-				return dto;
-			}
-		}
-
-		return null;
-
-	}
 
 }

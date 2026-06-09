@@ -14,7 +14,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 
 import com.rays.dto.RoleDTO;
-import com.rays.dto.RoleDTO;
+
 
 @Repository
 public class RoleDAO {
