@@ -91,7 +91,7 @@ public class UserDAO {
 			if (dto.getLastName() != null && dto.getLastName().length() > 0) {
 				predicateList.add(builder.like(qRoot.get("lastName"), dto.getLastName() + "%"));
 			}
-		}
+		}      
 
 		cq.where(predicateList.toArray(new Predicate[predicateList.size()]));
 

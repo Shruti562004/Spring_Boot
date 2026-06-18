@@ -3,13 +3,14 @@ package com.rays.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rays.dao.DonationDAO;
 import com.rays.dto.DonationDTO;
 
-
+@Service
 public class DonationService {
 	@Autowired
 	DonationDAO dao;
@@ -17,7 +18,10 @@ public class DonationService {
 	
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Long add(DonationDTO dto) {
+		
+		
 		Long id=dao.add(dto);
+		System.out.println("Service DTO = " + dto);
 		return id;
 	}
 	

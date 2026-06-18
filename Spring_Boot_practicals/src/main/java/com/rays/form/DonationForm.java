@@ -12,7 +12,6 @@ import com.rays.dto.DonationDTO;
 public class DonationForm  extends BaseForm{
 	
 	@NotEmpty(message = " name is required")
-	
 	private String name;
 	
 	@NotNull(message = "dob is required")

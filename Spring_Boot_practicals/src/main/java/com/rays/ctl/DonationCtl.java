@@ -12,11 +12,13 @@ import com.rays.common.ORSResponse;
 import com.rays.dto.DonationDTO;
 import com.rays.form.DonationForm;
 import com.rays.service.DonationService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 @RestController
 @RequestMapping(value="Donation") 
 public class DonationCtl extends BaseCtl {
-	
+	@Autowired
 	public DonationService service;
 	
 	@PostMapping("save")
@@ -43,6 +45,15 @@ public class DonationCtl extends BaseCtl {
 
 		return res;
 
+	}
+	
+	
+	@PostMapping("update")
+	
+	public ORSResponse update(@RequestBody @Valid DonationForm form, BindingResult bindingResult) {
+		return null;
+		
+		
 	}
 
 }

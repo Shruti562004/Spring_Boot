@@ -29,7 +29,7 @@ public class UserForm extends BaseForm {
 	@NotNull(message = "roleId is required")
 	private Long roleId;
 
-
+	private Long imageId;
 
 	public String getFirstName() {
 		return firstName;
@@ -80,6 +80,15 @@ public class UserForm extends BaseForm {
 	}
 
 	
+	public Long getImageId() {
+		return imageId;
+	}
+
+	public void setImageId(Long imageId) {
+		this.imageId = imageId;
+	}
+
+	
 
 	@Override
 	public BaseDTO getDto() {
@@ -92,6 +101,7 @@ public class UserForm extends BaseForm {
 		dto.setPassword(password);
 		dto.setRoleId(roleId);
 		dto.setDob(dob);
+		dto.setImageId(imageId);
 
 		return dto;
 	}

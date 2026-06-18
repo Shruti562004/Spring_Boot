@@ -26,7 +26,6 @@ public class UserRegistrationForm extends BaseForm {
 	@NotNull(message = "Date of birth is required")
 	private Date dob;
 
-	@NotNull(message = "role is required")
 	private Long roleId;
 
 	public String getFirstName() {

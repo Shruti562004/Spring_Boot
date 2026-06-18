@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,11 +18,13 @@ import com.rays.dto.DonationDTO;
 
 @Repository
 public class DonationDAO {
-
+    @PersistenceContext
 	EntityManager entityManager;
 	
 	public Long add(DonationDTO dto){
 		entityManager.persist(dto);
+
+	    System.out.println("DTO = " + dto);
 		return dto.getId();
 	}
 	
@@ -64,7 +67,7 @@ public class DonationDAO {
 		cq.where(predicateList.toArray(new Predicate[predicateList.size()]));
 		TypedQuery typedQuery=entityManager.createQuery(cq);
 		
-		if(pageSize>0) {
+		if(pageSize>0) { 
 			typedQuery.setFirstResult(pageNo*pageSize);
 			typedQuery.setMaxResults(pageSize);
 			
